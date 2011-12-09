@@ -4,7 +4,7 @@
 
 require kde.org
 
-SUMMARY="KDE support library for bar codes"
+SUMMARY="KDE support library for barcodes"
 PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
     build+run:
