@@ -1,7 +1,7 @@
 # Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY = "Library to generate QR barcodes"
-HOMEPAGE = "http://fukuchi.org/works/qrencode/index.html.en"
-DOWNLOADS = "http://fukuchi.org/works/qrencode/${PNV}.tar.bz2"
+SUMMARY="Library to generate QR barcodes"
+HOMEPAGE="http://fukuchi.org/works/qrencode/index.html.en"
+DOWNLOADS="http://fukuchi.org/works/qrencode/${PNV}.tar.bz2"
 
