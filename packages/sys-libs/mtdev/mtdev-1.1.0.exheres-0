@@ -1,0 +1,8 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Multitouch Protocol Translation Library"
+HOMEPAGE="http://bitmath.org/code/mtdev"
+DOWNLOADS="http://bitmath.org/code/mtdev/${PNV}.tar.bz2"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
