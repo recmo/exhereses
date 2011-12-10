@@ -3,4 +3,5 @@
 SUMMARY="MacBook automatic keyboard brightness daemon"
 SCM_REPOSITORY="https://github.com/poliva/${PN}.git"
 SLOT="0"
+PLATFORMS="~amd64 ~x86"
 require scm-git
