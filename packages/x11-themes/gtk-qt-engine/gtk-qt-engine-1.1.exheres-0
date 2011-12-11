@@ -6,4 +6,4 @@ require googlecode [ suffix=tar.bz2 ]
 SUMMARY="GTK-QT Theme engine"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-
+WORK="${WORKBASE}/${PN}"
