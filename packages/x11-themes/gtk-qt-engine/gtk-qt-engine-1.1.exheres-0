@@ -1,0 +1,9 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require googlecode [ suffix=.tar.bz2 ]
+
+SUMMARY="GTK-QT Theme engine"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
