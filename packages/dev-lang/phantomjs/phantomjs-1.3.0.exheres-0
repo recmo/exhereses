@@ -11,7 +11,7 @@ require qmake4
 
 src_install()
 {
-    mkdir -p ${IMAGE}/usr/bin
-    cp ${WORKDIR}/phantomjs ${IMAGE}/usr/bin
+    mkdir -p ${IMAGE}/usr
+    cp -r ${WORKDIR}/phantomjs/bin ${IMAGE}/usr
     default_src_install
 }
