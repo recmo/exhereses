@@ -13,5 +13,5 @@ src_install()
 {
     mkdir -p ${IMAGE}/usr/bin
     cp ${WORKDIR}/phantomjs ${IMAGE}/usr/bin
-    default_src_install();
+    default_src_install()
 }
