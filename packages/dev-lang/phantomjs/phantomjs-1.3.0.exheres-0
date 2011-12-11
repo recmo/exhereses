@@ -6,3 +6,5 @@ HOMEPAGE="http://www.phantomjs.org/"
 DOWNLOADS="http://phantomjs.googlecode.com/files/${PNV}-source.tar.gz"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
+
+require qmake4
