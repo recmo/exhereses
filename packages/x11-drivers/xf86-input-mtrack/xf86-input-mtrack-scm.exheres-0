@@ -9,3 +9,4 @@ DEPENDENCIES="
         sys-libs/mtdev
 "
 require scm-git
+require autotools
