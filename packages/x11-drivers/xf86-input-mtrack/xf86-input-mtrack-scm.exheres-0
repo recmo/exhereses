@@ -5,7 +5,7 @@ SCM_REPOSITORY="https://github.com/BlueDragonX/${PN}.git"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
-    build+run {
+    build+run: {
         sys-libs/mtdev
     }
 "
