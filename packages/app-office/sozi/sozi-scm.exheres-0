@@ -1,0 +1,15 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A presentation tool based on SVG"
+HOMEPAGE="http://sozi.baierouge.fr/wiki/en:welcome"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+DEPENDENCIES="
+    build+run:
+        media-gfx/inkscape
+        gnome-bindings/pygtk
+"
+SCM_REPOSITORY="https://github.com/senshu/Sozi.git"
+require scm-git
+
