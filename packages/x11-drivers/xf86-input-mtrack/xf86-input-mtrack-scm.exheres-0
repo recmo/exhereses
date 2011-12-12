@@ -9,4 +9,4 @@ DEPENDENCIES="
         sys-libs/mtdev
 "
 require scm-git
-require autotools
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
