@@ -6,3 +6,11 @@ HOMEPAGE="http://www.kokkonen.net/tjko/projects.html"
 DOWNLOADS="http://www.kokkonen.net/tjko/src/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
+
+src_install()
+{
+    mkdir -p ${IMAGE}/usr/bin
+    cp -r ${WORK}/jpegoptim ${IMAGE}/usr/bin
+    default_src_install
+}
+
