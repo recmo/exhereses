@@ -2,14 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 
-require kde.org
-
-SUMMARY="KDE support library for barcodes"
+SUMMARY="Battery remaining time display widget"
+HOMEPAGE="http://kde-look.org/content/show.php/Battery+Time+Remaining?content=123767"
+DOWNLOADS="http://kde-look.org/CONTENT/content-files/123767-${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
-DEPENDENCIES="
-    build+run:
-        x11-libs/qt:4
-        dev-libs/qrencode
-        dev-libs/libdmtx
-"
+
+require cmake
 
