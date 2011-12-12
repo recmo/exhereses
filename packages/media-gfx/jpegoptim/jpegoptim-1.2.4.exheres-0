@@ -1,0 +1,8 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Utility to optimize jpeg files"
+HOMEPAGE="http://www.kokkonen.net/tjko/projects.html"
+DOWNLOADS="http://www.kokkonen.net/tjko/src/${PNV}.tar.gz"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
