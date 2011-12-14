@@ -14,7 +14,9 @@ DEPENDENCIES="
 
 WORK="${WORKBASE}"
 
-src_build() {
+src_compile() { }
+
+src_install() {
 	mkdir -p ${IMAGE}/usr/share/inkspace/extensions
 	cp ${WORK}/*.{inx,py,js,css} ${IMAGE}/usr/share/inkscape/extensions
 }
