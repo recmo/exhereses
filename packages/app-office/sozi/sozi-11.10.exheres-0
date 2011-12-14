@@ -15,10 +15,10 @@ DEPENDENCIES="
 WORK="${WORKBASE}"
 
 src_compile() {
-	einfo "Nothing to compile"
+    einfo "Nothing to compile"
 }
 
 src_install() {
-	mkdir -p ${IMAGE}/usr/share/inkspace/extensions
-	cp ${WORK}/*.{inx,py,js,css} ${IMAGE}/usr/share/inkscape/extensions
+    mkdir -p ${IMAGE}/usr/share/inkscape/extensions
+    cp ${WORK}/*.{inx,py,js,css} ${IMAGE}/usr/share/inkscape/extensions
 }
