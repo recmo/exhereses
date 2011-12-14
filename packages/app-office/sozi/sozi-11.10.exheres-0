@@ -3,6 +3,7 @@
 
 SUMMARY="A presentation tool based on SVG"
 HOMEPAGE="http://sozi.baierouge.fr/wiki/en:welcome"
+DOWNLOADS="https://github.com/downloads/senshu/Sozi/${PN}-release-${PV}-08184441.zip"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
 DEPENDENCIES="
@@ -10,6 +11,8 @@ DEPENDENCIES="
         media-gfx/inkscape
         gnome-bindings/pygtk
 "
-SCM_REPOSITORY="https://github.com/senshu/Sozi.git"
-require scm-git
 
+src_build() {
+	mkdir -p ${IMAGE}/usr/share/inkspace/extensions
+	cp ${WORK}/*.{inx,py,js,css} ${IMAGE}/usr/share/inkscape/extensions
+}
