@@ -15,6 +15,7 @@ DEPENDENCIES="
 WORK="${WORKBASE}"
 
 src_compile() {
+	einfo "Nothing to compile"
 }
 
 src_install() {
