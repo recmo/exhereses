@@ -14,7 +14,8 @@ DEPENDENCIES="
 
 WORK="${WORKBASE}"
 
-src_compile() { }
+src_compile() {
+}
 
 src_install() {
 	mkdir -p ${IMAGE}/usr/share/inkspace/extensions
