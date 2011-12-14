@@ -12,6 +12,8 @@ DEPENDENCIES="
         gnome-bindings/pygtk
 "
 
+WORK="${WORKBASE}"
+
 src_build() {
 	mkdir -p ${IMAGE}/usr/share/inkspace/extensions
 	cp ${WORK}/*.{inx,py,js,css} ${IMAGE}/usr/share/inkscape/extensions
