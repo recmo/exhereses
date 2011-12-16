@@ -5,3 +5,4 @@ DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}-Source.tar.gz"
 WORK="${WORKBASE}/${PNV}-Source"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
+require cmake
