@@ -1,6 +1,6 @@
 # Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
 
 SUMMARY="Synergy lets you easily share your mouse and keyboard between multiple computers."
-SCM_REPOSITORY="http://${PN}.googlecode.com/files/${PNV}-Source.tar.gz"
+DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}-Source.tar.gz"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
