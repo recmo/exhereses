@@ -6,4 +6,5 @@ SUMMARY="ANSI C wrapper library for google calendar and contacts"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 SCM_REPOSITORY="git://gitorious.org/libgcal/libgcal.git"
-require git-scm
+
+require scm-git
