@@ -5,5 +5,9 @@ SUMMARY="Akonadi resources for synchronizing Google calendar and contacts"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 SCM_REPOSITORY="git://anongit.kde.org/akonadi-google"
+DEPENDENCIES="
+    build+run:
+        net-libs/libgcal
+"
 
 require scm-git
