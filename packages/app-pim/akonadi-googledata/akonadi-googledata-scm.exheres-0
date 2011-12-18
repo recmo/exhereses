@@ -11,3 +11,5 @@ DEPENDENCIES="
 "
 
 require scm-git
+require cmake
+
