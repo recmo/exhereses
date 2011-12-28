@@ -3,6 +3,6 @@
 
 SUMMARY="Align and correct scanned papers"
 HOMEPAGE="http://unpaper.berlios.de/"
-DOWNLOADS="http://prdownload.berlios.de/unpaper/${PNV}.tar.gz"
+DOWNLOADS="http://download.berlios.de/unpaper/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
