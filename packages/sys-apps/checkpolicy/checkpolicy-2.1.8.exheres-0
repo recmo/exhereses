@@ -9,4 +9,7 @@ DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
-DEPENDENCIES=""
+DEPENDENCIES="
+    build+run:
+        sys-libs/libsepol[multibuild_c:*(-)?]
+"
