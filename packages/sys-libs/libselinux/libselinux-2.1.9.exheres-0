@@ -12,3 +12,12 @@ DEPENDENCIES="
     build+run:
         sys-libs/libsepol
 "
+
+src_unpack() {
+    easy-multibuild_run_phase
+}
+
+src_prepare() {
+    easy-multibuild_run_phase
+}
+

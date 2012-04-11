@@ -9,3 +9,12 @@ DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
 DEPENDENCIES=""
+
+src_unpack() {
+    easy-multibuild_run_phase
+}
+
+src_prepare() {
+    easy-multibuild_run_phase
+}
+
