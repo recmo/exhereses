@@ -6,7 +6,4 @@ HOMEPAGE="http://userspace.selinuxproject.org/"
 DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
 SLOT="0"
-DEPENDENCIES="
-    build+run:
-        sys-libs/libsepol
-"
+DEPENDENCIES=""
