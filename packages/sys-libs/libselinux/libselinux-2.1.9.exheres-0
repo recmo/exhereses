@@ -16,6 +16,7 @@ DEPENDENCIES="
 
 install_one_multibuild()
 {
+    export LIBDIR=${IMAGE}/${LIBDIR}
     export SHLIBDIR=${LIBDIR}
     default
 }

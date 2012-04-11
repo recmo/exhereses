@@ -11,15 +11,29 @@ MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES="
     build:
-        sys-devel/flex
         sys-devel/bison
     build+run:
+        sys-devel/flex[multibuild_c:*(-)?]
         sys-libs/libsepol[multibuild_c:*(-)?]
+    test:
+        sys-libs/libselinux[multibuild_c:*(-)?]
 "
+unpack_one_multibuild()
+{
+    default
+    edo sed -i -e "s|\\\$(MAKE) -C test$||" ${PNV}/Makefile
+    edo sed -i -e "s|LIBDIR=|LIBDIR?=|" ${PNV}/test/Makefile
+}
 
 compile_one_multibuild()
 {
-    export LIBDIR=/${LIBDIR}
+    export LIBDIR=${ROOT}/${LIBDIR}
     export LEX=flex
-    default
+    emake checkpolicy checkmodule
+}
+
+test_one_multibuild()
+{
+    export LIBDIR=${ROOT}/${LIBDIR}
+    emake -C test
 }
