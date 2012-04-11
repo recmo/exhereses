@@ -10,3 +10,10 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES=""
+
+
+install_one_multibuild()
+{
+    export SHLIBDIR=${LIBDIR}
+    default
+}
