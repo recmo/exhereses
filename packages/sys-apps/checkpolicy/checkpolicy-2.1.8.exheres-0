@@ -10,6 +10,15 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES="
+    build:
+        sys-devel/flex
+        sys-devel/bison
     build+run:
         sys-libs/libsepol[multibuild_c:*(-)?]
 "
+
+compile_one_multibuild()
+{
+    export LEX=flex
+    default
+}
