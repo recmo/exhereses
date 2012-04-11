@@ -1,7 +1,7 @@
 # Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require easy-multibuild
+require easy-multibuild [ multiunpack ]
 
 SUMMARY="Security Enhanced Linux userspace library"
 HOMEPAGE="http://userspace.selinuxproject.org/"
@@ -10,4 +10,3 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES=""
-
