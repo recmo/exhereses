@@ -19,7 +19,7 @@ DEPENDENCIES="
 
 compile_one_multibuild()
 {
-    export LIBDIR=${ROOT}/${LIBDIR}
+    export LIBDIR=/${LIBDIR}
     export LEX=flex
     default
 }
