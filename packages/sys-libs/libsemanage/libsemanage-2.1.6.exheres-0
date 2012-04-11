@@ -1,20 +1,12 @@
 # Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require flag-o-matic easy-multibuild [ work=${PNV} ]
+require easy-multibuild
 
 SUMMARY="Security Enhanced Linux userspace library"
 HOMEPAGE="http://userspace.selinuxproject.org/"
 DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
+MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES=""
-
-src_unpack() {
-    easy-multibuild_run_phase
-}
-
-src_prepare() {
-    easy-multibuild_run_phase
-}
-
