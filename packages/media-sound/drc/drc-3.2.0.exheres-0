@@ -1,0 +1,35 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge
+
+SUMMARY="DRC generates digital room correction FIR filters to be used within HiFi systems in conjunction with real time convolution
+ engines like BruteFIR."
+HOMEPAGE="http://drc-fir.sourceforge.net/"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+DOWNLOADS="mirror://sourceforge/${PN}-fir/DOWNLOAD/${PNV}.tar.gz"
+DEPENDENCIES="
+    recommendation:
+        media-sound/brutefir
+"
+
+src_configure()
+{
+    sed -i "s|/usr/local|/usr|" ${WORK}/source/makefile
+    sed -i "s|^CFLAGS|# CFLAGS|" ${WORK}/source/makefile
+}
+
+src_compile()
+{
+    emake -C ${WORK}/source -f makefile CFLAGS="${CFLAGS} -I ${WORK}/source"
+}
+
+src_install()
+{
+    mkdir -p ${IMAGE}/usr/bin
+    cp ${WORK}/source/{drc,glsweep} ${IMAGE}/usr/bin
+    mkdir -p ${IMAGE}/usr/share/${PN}
+    cp -r ${WORK}/source/{config,mic,target} ${IMAGE}/usr/share/${PN}
+    default_src_install
+}
