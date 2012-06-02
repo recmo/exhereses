@@ -1,0 +1,17 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A Text Encoding Converstion Toolkit"
+HOMEPAGE="http://scripts.sil.org/cms/scripts/page.php?cat_id=TECkit"
+DOWNLOADS="http://scripts.sil.org/svn-view/teckit/TAGS/TECkit_2_5_1.tar.gz"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+
+src_unpack()
+{
+    default_src_unpack
+    mv TECkit_2_5_1 ${PNV}
+    chmod +x ${PNV}/configure
+    sed -i "26a#include <stdio.h>" ${PNV}/source/Compiler.h 
+}
+
