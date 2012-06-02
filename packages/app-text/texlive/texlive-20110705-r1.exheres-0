@@ -1,0 +1,171 @@
+# Copyright 2010, 2011 Ingmar Vanhassel
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools [ supported_autoconf=[ none ] supported_automake=[ 1.11 ] ] texlive
+
+SUMMARY="The TeXlive distribution"
+DESCRIPTION="
+FIXME
+"
+HOMEPAGE="http://tug.org/texlive"
+DOWNLOADS="mirror://ctan/systems/${PN}/Source/${PNV}-source.tar.xz"
+
+for module in \
+    a2ping asymptote bibtex8 bundledoc ctie cweb de-macro dtl dvi2tty dviasm dvicopy dvidvi dviljk \
+    dvipng dvipos findhyph fragmaster hyphenex installfont lacheck latex2man listings-ext mkjobtexmf \
+    patgen pdfcrop pdftools pkfix pkfix-helper purifyeps seetexk sty2dtx synctex texcount texdef \
+    texdiff texdirflatten texdoc texloganalyser texware tie tpic2pdftex web collection-binextra \
+    tetex hyphen-base texconfig gsftopk texlive.infra
+do
+    DOWNLOADS+=" http://dev.exherbo.org/~ingmar/distfiles/texlive/texlive-module-${module}-${PV}.tar.xz"
+done
+
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-xetex-2011.tar.xz"
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-xetex-def-2011.tar.xz"
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-plain-2011.tar.xz"
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-collection-basic-2011.tar.xz"
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-pdftex-2011.tar.xz"
+DOWNLOADS+=" ftp://ftp.snt.utwente.nl/pub/linux/gentoo/distfiles/texlive-module-pdftex-def-2011.tar.xz"
+
+REMOTE_IDS="freshmeat:${PN}"
+
+LICENCES="FIXME"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+RESTRICT="test"
+
+DEPENDENCIES="
+    build:
+        app-arch/xz
+        dev-util/pkg-config
+        sys-apps/ed
+        sys-devel/bison
+        sys-devel/flex
+    build+run:
+        app-text/ghostscript [[ note = [ --with-system-libgs ] ]]
+        app-text/poppler [[ note = [ --with-system-xpdf ] ]]
+        dev-libs/kpathsea [[ note = [ --with-system-kpathsea ] ]]
+        dev-libs/ptexenc [[ note = [ --with-system-ptexenc ] ]]
+        dev-libs/icu [[ note = [ --with-system-icu ] ]]
+        dev-libs/zziplib [[ note = [ --with-system-zziplib ] ]]
+        dev-tex/luatex
+        media-libs/freetype:2 [[ note = [ --with-system-freetype2 ] ]]
+        media-libs/gd [[ note = [ --with-system-gd ] ]]
+        media-libs/libpng [[ note = [ --with-system-libpng ] ]]
+        media-libs/t1lib [[ note = [ --with-system-t1lib ] ]]
+        media-libs/silgraphite
+        dev-libs/teckit
+"
+
+WORK="${WORKBASE}/${PNV}-build/"
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-Fix-paths.patch" )
+ECONF_SOURCE="${WORKBASE}/${PNV}-source/"
+
+src_unpack() {
+    default
+    edo mkdir "${WORK}"
+
+    # edo rm -rf texmf{,-dist}/doc
+}
+
+src_prepare() {
+    edo cd "${ECONF_SOURCE}"
+    default
+    # Manually regenerate all Makefile.ams touched by our patches.
+    # automake doesn't recurse, autoreconf takes too long.
+    edo autoreconf texk/bibtex8/ texk/bibtexu/ texk/cjkutils/ texk/dvipdfmx/ texk/dvipsk/ \
+                   texk/gsftopk/ texk/kpathsea/ texk/lcdf-typetools/ texk/tetex/ \
+                   texk/texlive/ texk/xdvik/ texk/xdvipdfmx/ utils/chktex/
+}
+
+src_configure() {
+    local myconf=()
+
+    myconf=(
+        --with-banner-add="/Exherbo ${PNVR}"
+        # If enabled, build for a TeX Live binary distribution as shipped by the TeX user groups
+        --disable-native-texlive-build
+        # Don't install executables, binaries into platform dependent subdirectories of bindir, libdir
+        --disable-multiplatform
+        --enable-shared
+        # Terminate the build if a requested feature can't be enabled due to missing dependencies
+        --disable-missing
+
+        # Fails for some subdirectories
+        --hates=docdir
+
+        # We don't currently have freetype:1, this is only used by texk/ttf2pk, which we disable
+        --with-system-{freetype,freetype2,gd,graphite,icu,kpathsea,libgs,libpng,poppler,ptexenc,teckit,t1lib,xpdf,zlib,zziplib}
+        --with-freetype2-include=/usr/include
+
+        # Following features disabled temporarily until needed
+        --without-x
+        --disable-lcdf-typetools
+        --disable-ttf2pk # requires freetype:1
+        --enable-xetex # needs graphite & teckit
+        --disable-xdvipdfmx
+        --disable-xindy
+
+        --disable-luatex # separate package
+
+        --disable-biber
+        --enable-bibtexu
+        --disable-dvipng
+        --enable-dvipsk
+        --disable-dvipdfmx
+        --disable-chktex
+        --disable-pdfopen
+        --disable-ps2eps
+        --enable-ps2pkm
+        --disable-detex
+        --disable-ttf2pk
+        --disable-ttf2pk2
+        --disable-tex4htk
+        --disable-cjkutils
+        --disable-xdvik
+        --disable-dvi2tty
+        --disable-dvisvgm
+        --disable-vlna
+        --disable-xdvipdfmx
+        --enable-ptex
+        --enable-eptex
+        --enable-mendexk
+        --enable-makejvf
+
+        --disable-dialog # sys-apps/dialog
+        --disable-psutils # app-text/psutils
+    )
+
+    econf "${myconf[@]}"
+}
+
+src_install() {
+    default
+
+    # FIXME: Comb through /usr/texmf*/scripts for cruft that shouldn't be installed
+    # Get rid of tlmgr bits
+    edo rm -rf "${IMAGE}"/usr/{bin/tlmgr,texmf/scripts/texlive/}
+
+    edo cp -pPR "${WORKBASE}/"texmf{,-dist} "${IMAGE}"/usr/share/
+    dodir /usr/share/tlpkg
+    edo cp -pPR "${WORKBASE}/"tlpkg/TeXLive "${IMAGE}"/usr/share/tlpkg/
+
+    # Put updmap.cfg under /etc and under config protection
+    dodir /etc/texmf/web2c/updmap.cfg.d/
+    edo mv "${IMAGE}"/{usr/share/texmf/web2c,etc/texmf/web2c/updmap.cfg.d}/updmap.cfg
+    edo cat "${IMAGE}"/etc/texmf/web2c/updmap.cfg.d/* > "${IMAGE}"/etc/texmf/web2c/updmap.cfg
+    dosym /etc/texmf/web2c/updmap.cfg /usr/share/texmf/web2c/updmap.cfg
+    
+    dosym /usr/bin/xetex /usr/bin/xelatex
+
+    keepdir /var/lib/texmf/fonts/map/{dvips,pdftex,dvipdfm}/updmap
+}
+
+pkg_postrm() {
+    if [[ -z ${REPLACED_BY_ID} ]]; then
+        nonfatal edo rm "${ROOT}"/etc/texmf/web2c/updmap.cfg
+    fi
+}
+

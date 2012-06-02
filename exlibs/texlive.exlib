@@ -1,0 +1,27 @@
+# Copyright 2011 Ingmar Vanhassel
+# Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases pkg_postinst
+
+texlive_pkg_postinst() {
+    local d
+    for d in fmtutil.cnf texmf.cnf updmap.cfg; do
+        if [[ -d ${ROOT}/etc/texmf/web2c/${d}.d ]]; then
+            nonfatal edo cat "${ROOT}"/etc/texmf/web2c/${d}.d/* > "${ROOT}"/etc/texmf/web2c/${d}
+        fi
+    done
+
+    if [[ ${ROOT} == / ]]; then
+        nonfatal edo mktexlsr || ewarn "mktexlsr failed"
+        nonfatal edo fmtutil-sys --all || ewarn "fmtutil-sys --all failed"
+        # FIXME Drop --syncwithtrees and install proper config file
+        nonfatal edo updmap-sys --syncwithtrees || ewarn "updmap-sys --syncwithtrees failed"
+    else
+        ewarn "The following list of commands could not be run because ROOT != /. You will have to"
+        ewarn "run them manually:"
+        ewarn "    mktexlsr"
+        ewarn "    fmtutil-sys --all"
+        ewarn "    nonfatal edo updmap-sys --syncwithtrees"
+    fi
+}
+
