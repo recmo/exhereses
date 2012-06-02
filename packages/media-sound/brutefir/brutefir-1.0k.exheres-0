@@ -1,0 +1,19 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Software convolution engine."
+HOMEPAGE="http://www.ludd.luth.se/~torger/brutefir.html"
+DOWNLOADS="http://www.ludd.luth.se/~torger/files/${PNV}.tar.gz"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+DEPENDENCIES="
+    build+run:
+        sys-sound/alsa-lib
+        media-sound/jack-audio-connection-kit
+"
+
+src_configure()
+{
+	sed -i "s|/usr/local|/usr|g" ${WORK}/Makefile
+	sed -i "s|INSTALL_PREFIX)/lib/|INSTALL_PREFIX)/${LIBDIR}/|g" ${WORK}/Makefile
+}
