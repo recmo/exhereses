@@ -1,0 +1,27 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A fast universal lexical analyzer generator"
+HOMEPAGE="http://quex.sourceforge.net/"
+PLATFORMS="~amd64 ~x86"
+DOWNLOADS="mirror://sourceforge/${PN}/DOWNLOAD/${PNV}.tar.gz"
+SLOT="0"
+DEPENDENCIES="
+    run:
+        dev-lang/python
+"
+
+src_prepare()
+{
+    sed -i "28aos.environ['QUEX_PATH']='/usr/share/${PNV}'" ${WORK}/quex-exe.py
+}
+
+src_install()
+{
+    mkdir -p ${IMAGE}/usr/share/
+    mkdir -p ${IMAGE}/usr/bin/
+    mkdir -p ${IMAGE}/usr/include/
+    cp -r ${WORK} ${IMAGE}/usr/share/
+    ln -s -r ${IMAGE}/usr/share/${PNV}/quex-exe.py ${IMAGE}/usr/bin/quex
+    ln -s -r ${IMAGE}/usr/share/${PNV}/quex ${IMAGE}/usr/include/quex
+}
