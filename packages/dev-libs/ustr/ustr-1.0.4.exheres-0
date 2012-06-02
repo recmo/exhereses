@@ -1,0 +1,19 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require easy-multibuild  [ multiunpack=true ]
+
+SUMMARY="Micro string API for C"
+HOMEPAGE="http://www.and.org/ustr/"
+DOWNLOADS="http://pkgs.fedoraproject.org/repo/pkgs/ustr/${PNV}.tar.gz/fc73e968de26e4e911d7c81c5e0e7359/${PNV}.tar.gz"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="multibuild_c: 32 64"
+SLOT="0"
+DEPENDENCIES="
+"
+
+unpack_one_multibuild()
+{
+    default
+    edo sed -i "s|^libdir=.*\$|libdir=/${LIBDIR}|" ${PNV}/Makefile
+}
