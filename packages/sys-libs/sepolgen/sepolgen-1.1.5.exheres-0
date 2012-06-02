@@ -1,0 +1,15 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require easy-multibuild  [ multiunpack=true ]
+
+SUMMARY="Security Enhanced Linux userspace libraries"
+HOMEPAGE="http://userspace.selinuxproject.org/"
+DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="multibuild_c: 32 64"
+SLOT="0"
+DEPENDENCIES="
+    build+run:
+        dev-lang/python
+"
