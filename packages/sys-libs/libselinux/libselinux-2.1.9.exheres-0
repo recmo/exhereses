@@ -7,16 +7,37 @@ SUMMARY="Security Enhanced Linux userspace library"
 HOMEPAGE="http://userspace.selinuxproject.org/"
 DOWNLOADS="http://userspace.selinuxproject.org/releases/20120216/${PNV}.tar.gz"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="multibuild_c: 32 64"
+MYOPTIONS="python multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES="
+    build:
+        python? (
+            dev-lang/swig
+        )
     build+run:
         sys-libs/libsepol[multibuild_c:*(-)?]
+        python? (
+            dev-lang/python
+        )
 "
+
+unpack_one_multibuild()
+{
+    default
+    edo sed -i "s|\\\$(LIBDIR)/libsepol.a|${ROOT}/${LIBDIR}/libsepol.a|" ${PNV}/src/Makefile
+}
+
+compile_one_multibuild()
+{
+    default
+    option python && emake pywrap
+}
 
 install_one_multibuild()
 {
+    export PYLIBDIR=${IMAGE}/usr/${LIBDIR}/$(python -c 'import sys;print("python%d.%d" % sys.version_info[0:2])')
     export LIBDIR=${IMAGE}/${LIBDIR}
     export SHLIBDIR=${LIBDIR}
     default
+    option python && emake install-pywrap
 }

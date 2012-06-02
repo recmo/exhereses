@@ -21,7 +21,7 @@ DEPENDENCIES="
 unpack_one_multibuild()
 {
     default
-    edo sed -i -e "s|\\\$(MAKE) -C test$||" ${PNV}/Makefile
+    edo sed -i -e "s|\\\$(MAKE) -C test\$||" ${PNV}/Makefile
     edo sed -i -e "s|LIBDIR=|LIBDIR?=|" ${PNV}/test/Makefile
 }
 
