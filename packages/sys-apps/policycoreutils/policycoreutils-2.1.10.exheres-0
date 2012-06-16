@@ -11,7 +11,7 @@ MYOPTIONS="multibuild_c: 32 64"
 SLOT="0"
 DEPENDENCIES="
     build+run:
-        sys-libs/gettext[multibuild_c:*(-)?]
+        sys-devel/gettext[multibuild_c:*(-)?]
         sys-libs/libselinux[multibuild_c:*(-)?][python]
         sys-libs/libsemanage[multibuild_c:*(-)?][python]
 "
