@@ -1,0 +1,34 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN}-v${PV/.4/-4}"
+
+require multilib sourceforge [ suffix=tar.gz project=ebtables ]
+
+SUMMARY=""
+DESCRIPTION="
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO=""
+
+WORK="${WORKBASE}/${MY_PNV}"
+
+DEFAULT_SRC_COMPILE_PARAMS=( CC="${CC}" CFLAGS="${CFLAGS} -Iinclude -DARPTABLES_VERSION=\\\"0.0.3-4\\\" " )
+
+src_prepare() {
+    edo sed -e "/\$(DESTDIR)\$(SYSCONFIGDIR)\/ebtables-con/d"  \
+            -e "/\$(DESTDIR)\$(INITDIR)\/ebtables/d"           \
+            -e "s/^LIBDIR:=.*/LIBDIR:=\/${LIBDIR}\/${PN}/" \
+            -e "s/^MANDIR:=.*/MANDIR:=\/usr\/share\/man/"      \
+            -e "s/^BINDIR:=.*/BINDIR:=\/sbin/"                 \
+            -i Makefile
+}
+
+
