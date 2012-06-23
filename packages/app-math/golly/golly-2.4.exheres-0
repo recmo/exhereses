@@ -1,0 +1,10 @@
+# Copyright 2011 Remco Bloemen <remco.bloemen@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ pv="${PV}-src" suffix="tar.gz" ]
+
+SUMMARY="Golly is an open source, cross-platform application for exploring Conway's Game of Life and other cellular automata."
+HOMEPAGE="http://golly.sourceforge.net/"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+WORK="${WORKBASE}/${PNV}-src"
