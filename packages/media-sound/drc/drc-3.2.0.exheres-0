@@ -28,7 +28,7 @@ src_compile()
 src_install()
 {
     mkdir -p ${IMAGE}/usr/bin
-    cp ${WORK}/source/{drc,glsweep} ${IMAGE}/usr/bin
+    cp ${WORK}/source/{drc,glsweep,lsconv} ${IMAGE}/usr/bin
     mkdir -p ${IMAGE}/usr/share/${PN}
     cp -r ${WORK}/source/{config,mic,target} ${IMAGE}/usr/share/${PN}
     default_src_install
